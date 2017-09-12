@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="js/jquery-3.1.1.min.js"></script>
+	
+		<!--<link rel="stylesheet" href="css/bootstrap.css">
+		<script src="js/bootstrap.js"></script>-->
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/iscroll-probe.js"></script>
+		<style type="text/css">
+				*{
+					margin: 0;
+					padding: 0;
+					list-style: none;
+				}
+				html{
+					background: #F8F8F8;
+				}
+				header{
+					background: #fff;
+				}
+				header img{
+					width: 100%;
+				}
+				#main img{
+					width: 100%;
+				}
+				nav{
+					display: flex;
+					flex-wrap: wrap;
+					align-items: center;
+					font-size: 12px;
+					font-family: "微软雅黑";
+					background: #fff;
+				}
+				nav div{
+					width: 20%;
+					text-align: center;
+					margin: 0.5rem 0;
+				}
+				nav img{
+					width: 100%;
+				}
+				.banner{
+					background: #fff;
+				
+					border-bottom: 1px solid #dddddd;
+				}
+				.banner img{
+					width: 100%;
+				}
+				.tt{
+					font-size: 12px;
+					display: flex;
+					padding: 0.5rem 0;
+					background: #fff;
+					
+				}
+				.sp1{
+					color: #fff;
+					background: red;
+				}
+				.d1{
+					border-right: 1px solid #dddddd;
+					padding: 0 0.5rem;
+				}
+				.d2{
+					
+					padding: 0 0.5rem;
+				}
+				footer{
+					margin-top: 0.5rem;
+					background: #fff;
+				}
+				footer img{
+					width: 100%;
+				}
+				.f1{
+					padding: 0.5rem 0;
+				}
+				
+				#hua{
+					width:100%;
+					
+					display: flex;
+					font-size: 10px;
+					text-align: center;
+					width:100%;
+					
+					
+				}
+				
+				
+				#hua img{
+					width: 90%;
+					 
+				}
+				#sw{
+					display: flex;
+				}
+				.dd{
+					margin: 0 0.5rem;
+				}
+				
+				.swiper-pagination-bullet-active{
+					background: #fff;
+				}
+			 
+		</style>
+	</head>
+	<body>
+		<header>
+			<img src="img/2017-07-31_090901.jpg" alt="" />
+		</header>
+		
+		<div class="swiper-container" id="main">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide"><img src="img/lunbo1.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo2.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo3.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo4.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo5.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo6.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo7.jpg" alt="" /></li>
+				<li class="swiper-slide"><img src="img/lunbo8.jpg" alt="" /></li>
+			</ul>
+			<div class="swiper-pagination"></div>
+		</div>
+		
+		<nav>
+			
+		</nav>
+		
+		<div class="banner">
+			<img src="img/guanggao.gif" alt="" />
+		</div>
+		
+		<div class="tt">
+			<div class="d1">Plus <span class="sp1">头</span> <span class="sp1">条</span> </div>
+			<div class="d2"><span class="sp1">新人礼</span> 首单新人礼 送158元新人礼包</div>
+		</div>
+		
+		<footer>
+			<div class="f1"><img src="img/2017-07-31_094243.jpg" alt="" /></div>
+			
+		
+			<div id="hua" class="swiper-container">
+				<ul class="swiper-wrapper" id="sw">
+					
+					
+				</ul>
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript">
+	
+		
+		var swp = new Swiper("#main",{
+			pagination:".swiper-pagination"
+		})
+		
+		
+		
+		$.ajax({
+			url:"http://127.0.0.1:8080",
+			success:function(data){
+				var obj = JSON.parse(data)
+				
+				var str1 = "";
+					for(var i of obj.info){
+					str1 += '<div>'
+								+'<img src="img/'+i.img+'" alt="" />'
+								+'<p>'+i.p+'</p>'
+							+'</div>'
+					}
+					$('nav').append(str1)
+					
+				var str2 = "";
+					for(var j of obj.info1){
+						str2 += 	'<li class="swiper-slide dd">'
+									+'<div>'
+										+'<img src="img/'+j.img+'" alt="" />'
+										+'<p>'+j.p+'</p>'
+										+'<p style="color: #dddddd;">'+j.p1+'</p>'
+									+'</div>'
+									+'</li>'
+					}
+					$('#sw').append(str2)
+					var myswp = new Swiper("#hua",{
+						slidesPerView:4,
+						loop:true,
+					})
+				}
+			})
+		
+		
+	</script>
+</html>
